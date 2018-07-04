@@ -14,19 +14,19 @@ set nocompatible
 
 " Setting up Vundle - the best vim plugin manager
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('/home/dev-super/workspace/zuchen.wang/vim-config/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
+    silent !mkdir -p /home/dev-super/workspace/zuchen.wang/vim-config/.vim/bundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git /home/dev-super/workspace/zuchen.wang/vim-config/.vim/bundle/vundle
     let iCanHazVundle=0
 endif
 
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=/home/dev-super/workspace/zuchen.wang/vim-config/.vim/bundle/vundle/
+call vundle#rc("~/workspace/zuchen.wang/vim-config/.vim/bundle/")
 
 " let Vundle manage Plugins
 Plugin 'gmarik/vundle'
@@ -275,14 +275,14 @@ set wildmenu
 set wildmode=full
 
 " better backup, swap and undos storage
-set directory=~/.vim/dirs/tmp     " directory to place swap files in
+set directory=/home/dev-super/workspace/zuchen.wang/vim-config/.vim/dirs/tmp     " directory to place swap files in
 set backup                        " make backup files
-set backupdir=~/.vim/dirs/backups " where to put backup files
+set backupdir=/home/dev-super/workspace/zuchen.wang/vim-config/.vim/dirs/backups " where to put backup files
 set undofile                      " persistent undos - undo after you re-open the file
-set undodir=~/.vim/dirs/undos
-set viminfo+=n~/.vim/dirs/viminfo
+set undodir=/home/dev-super/workspace/zuchen.wang/vim-config/.vim/dirs/undos
+set viminfo+=n/home/dev-super/workspace/zuchen.wang/vim-config/.vim/dirs/viminfo
 " store yankring history file there too
-let g:yankring_history_dir = '~/.vim/dirs/'
+let g:yankring_history_dir = '/home/dev-super/workspace/zuchen.wang/vim-config/.vim/dirs/'
 
 " create needed directories if they don't exist
 if !isdirectory(&backupdir)
@@ -400,7 +400,7 @@ let g:ctrlp_custom_ignore = {
 " nmap ,o :RopeFindOccurrences<CR>
 
 " YCM config
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/dev-super/workspace/zuchen.wang/vim-config/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " NeoComplCache ------------------------------
