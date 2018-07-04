@@ -87,7 +87,7 @@ Plugin 'mhinz/vim-signify'
 " Window chooser
 " Plugin 't9md/vim-choosewin'
 " Python and other languages code checker
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " YCM
 Plugin 'Valloric/YouCompleteMe'
 " YCM-Generator
@@ -134,8 +134,6 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'IndexedSearch'
 " XML/HTML tags navigation
 Plugin 'matchit.zip'
-" Gvim colorscheme
-Plugin 'Wombat'
 " Yank history navigation
 Plugin 'YankRing.vim'
 
@@ -194,7 +192,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " always show status bar
 set laststatus=2
-
+" soft line wrap
+set wrap
 " incremental search
 set incsearch
 " highlighted search results
@@ -261,10 +260,6 @@ else
     colorscheme delek
 endif
 
-" colors for gvim
-if has('gui_running')
-    colorscheme wombat
-endif
 
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
@@ -362,12 +357,18 @@ let g:ctrlp_custom_ignore = {
 " Syntastic ------------------------------
 
 " show list of errors and warnings on the current file
-" nmap <leader>e :Errors<CR>
+nmap <leader>e :Errors<CR>
 " turn to next or previous errors, after open errors list
-" nmap <leader>n :lnext<CR>
-" nmap <leader>p :lprevious<CR>
+nmap <leader>n :lnext<CR>
+nmap <leader>p :lprevious<CR>
 " check also when just opened the file
-" let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_cpp_include_dirs = ['/usr/include/']
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+let g:syntastic_quiet_messages = { "type": "style" }
 " syntastic checker for javascript.
 " eslint is the only tool support JSX.
 " If you don't need write JSX, you can use jshint.
@@ -378,10 +379,10 @@ let g:ctrlp_custom_ignore = {
 " let g:syntastic_enable_signs = 0
 " custom icons (enable them if you use a patched font, and enable the previous 
 " setting)
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" let g:syntastic_style_error_symbol = '✗'
-" let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
 
 " Python-mode ------------------------------
 
@@ -389,7 +390,7 @@ let g:ctrlp_custom_ignore = {
 " let g:pymode_lint_on_write = 0
 " let g:pymode_lint_signs = 0
 " don't fold python code on open
-" let g:pymode_folding = 0
+let g:pymode_folding = 0
 " don't load rope by default. Change to 1 to use rope
 " let g:pymode_rope = 0
 " open definitions on same window, and custom mappings for definitions and
@@ -401,7 +402,9 @@ let g:ctrlp_custom_ignore = {
 
 " YCM config
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+set completeopt=longest,menu
 
 " NeoComplCache ------------------------------
 
@@ -538,10 +541,10 @@ function SetTitle()
         call append(line("."),"# coding=utf-8")
 	    call append(line(".")+1, "") 
 
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line("."),"# encoding: utf-8")
-	    call append(line(".")+1, "")
+"    elseif &filetype == 'ruby'
+"        call setline(1,"#!/usr/bin/env ruby")
+"        call append(line("."),"# encoding: utf-8")
+"	    call append(line(".")+1, "")
     endif
 endfunction
 autocmd BufNewFile * normal G
@@ -549,7 +552,7 @@ autocmd BufNewFile * normal G
 " Vim-jsx ------------------------------
 
 " if you use JSX syntax in .js file, please enable it.
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 
 " Vim-markdown ------------------------------
 
