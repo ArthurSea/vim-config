@@ -81,13 +81,15 @@ Plugin 'tomasr/molokai'
 " Git/mercurial/others diff icons on the side of the file lines
 Plugin 'mhinz/vim-signify'
 " Automatically sort python imports
-"Plugin 'fisadev/vim-isort'
+Plugin 'fisadev/vim-isort'
 " Drag visual blocks arround
 " Plugin 'fisadev/dragvisuals.vim'
 " Window chooser
 " Plugin 't9md/vim-choosewin'
 " Python and other languages code checker
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+" 异步语法检查
+Plugin 'w0rp/ale'
 " YCM
 Plugin 'Valloric/YouCompleteMe'
 " YCM-Generator
@@ -293,6 +295,9 @@ endif
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
+" isort for python 
+let g:vim_isort_map = '<C-i>'
+let g:vim_isort_python_version = 'python2'
 
 " Tagbar ----------------------------- 
 
@@ -357,18 +362,18 @@ let g:ctrlp_custom_ignore = {
 " Syntastic ------------------------------
 
 " show list of errors and warnings on the current file
-nmap <leader>e :Errors<CR>
+" nmap <leader>e :Errors<CR>
 " turn to next or previous errors, after open errors list
-nmap <leader>n :lnext<CR>
-nmap <leader>p :lprevious<CR>
+" nmap <leader>n :lnext<CR>
+" nmap <leader>p :lprevious<CR>
 " check also when just opened the file
-let g:syntastic_check_on_open = 1
-let g:syntastic_cpp_include_dirs = ['/usr/include/']
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-let g:syntastic_quiet_messages = { "type": "style" }
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_cpp_include_dirs = ['/usr/include/']
+" let g:syntastic_cpp_remove_include_errors = 1
+" let g:syntastic_cpp_check_header = 1
+" let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+" let g:syntastic_quiet_messages = { "type": "style" }
 " syntastic checker for javascript.
 " eslint is the only tool support JSX.
 " If you don't need write JSX, you can use jshint.
@@ -379,10 +384,10 @@ let g:syntastic_quiet_messages = { "type": "style" }
 " let g:syntastic_enable_signs = 0
 " custom icons (enable them if you use a patched font, and enable the previous 
 " setting)
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_style_error_symbol = '✗'
+" let g:syntastic_style_warning_symbol = '⚠'
 
 " Python-mode ------------------------------
 
@@ -488,19 +493,44 @@ highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 " Window Chooser ------------------------------
+" ale config 
+" check
+let g:ale_linters = {
+\   'c++': ['clang'],
+\   'c': ['clang'],
+\   'python': ['flake8', 'pylint'],
+\}
+" fix
+let b:ale_fixers = ['autopep8', 'yapf']
+" do not check when open file
+let g:ale_lint_on_enter = 1
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"<Leader>s触发/关闭语法检查
+let mapleader=","
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
 
-" mapping
-nmap  -  <Plug>(choosewin)
-" show big letters
+" ---------------------------------
+" map# ping
+nmap #  -  <Plug>(choosewin)
+" sho# w big letters
 let g:choosewin_overlay_enable = 1
-
-" Airline ------------------------------
-
+" Air# line ------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dark'
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 
 " to use fancy symbols for airline, uncomment the following lines and use a
