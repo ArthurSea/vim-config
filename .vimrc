@@ -183,6 +183,11 @@ set encoding=utf-8
 set backspace=2 " make backspace work like most other apps
 set backspace=indent,eol,start
 
+" 保存时自动删除行尾空格
+autocmd BufWritePre * :%s/\s\+$//e
+" 保存时自动删除文件末尾的空格
+autocmd BufWritePre * :%s/^$\n\+\%$//ge
+
 " tab length exceptions on some file types
 " autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -507,8 +512,8 @@ let g:ale_lint_on_enter = 1
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = '§'
 "显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
