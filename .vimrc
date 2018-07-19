@@ -1,9 +1,8 @@
 scriptencoding utf-8
 " ============================================================================
-" Author: TaoBeier
-" Blog: http://moelove.info
+" Author: Zuchen Wang
 " Version: v1.1.0
-" Update Time: 2016-09-25
+" Update Time: 2018-09-25
 
 " ============================================================================
 " Vundle initialization
@@ -66,6 +65,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'Townk/vim-autoclose'
 " Indent text object
 Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'Yggdroot/indentLine'
 " Python mode (indentation, doc, refactor, lints, code checking, motion and
 " operators, highlighting, run and ipdb breakpoints)
 " Plugin 'python-mode/python-mode'
@@ -93,15 +93,15 @@ Plugin 'w0rp/ale'
 " YCM
 Plugin 'Valloric/YouCompleteMe'
 " YCM-Generator
-Plugin 'rdnetto/YCM-Generator', {'branch':'stable'} 
+Plugin 'rdnetto/YCM-Generator', {'branch':'stable'}
 " jedi-vim
 Plugin 'davidhalter/jedi-vim'
 " Paint css colors with the real color
 " Plugin 'lilydjwg/colorizer'
 " Relative numbering of lines (0 is the current line)
 " (disabled by default because is very intrusive and can't be easily toggled
-" on/off. When the plugin is present, will always activate the relative 
-" numbering every time you go to normal mode. Author refuses to add a setting 
+" on/off. When the plugin is present, will always activate the relative
+" numbering every time you go to normal mode. Author refuses to add a setting
 " to avoid that)
 " Plugin 'myusuf3/numbers.vim'
 
@@ -116,7 +116,7 @@ Plugin 'davidhalter/jedi-vim'
 " Markdown syntastic highlight
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-" Markdown realtime preview need type :InstantMarkdownPreview in vim editer. 
+" Markdown realtime preview need type :InstantMarkdownPreview in vim editer.
 " Before you want to use it, please run
 " `sudo npm -g install instant-markdown-d`
 Plugin 'suan/vim-instant-markdown'
@@ -173,7 +173,7 @@ set autoread
 set confirm
 " no backup files
 set nobackup
-" other settings 
+" other settings
 set langmenu=zh_CN.UTF-8
 " set mouse=a
 set whichwrap+=<,>,h,l,[,]
@@ -207,7 +207,7 @@ set incsearch
 set hlsearch
 " search ignore case
 set ignorecase
-" muting search highlighting 
+" muting search highlighting
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " syntax highlight on
@@ -219,8 +219,8 @@ set nu
 " tab navigation mappings
 map tn :tabn<CR>
 map tp :tabp<CR>
-map tm :tabm 
-map tt :tabnew 
+map tm :tabm
+map tt :tabnew
 map ts :tab split<CR>
 map <C-S-Right> :tabn<CR>
 imap <C-S-Right> <ESC>:tabn<CR>
@@ -253,8 +253,8 @@ ca w!! w !sudo tee "%"
 command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
 command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
 " mappings to call them
-nmap ,R :RecurGrep 
-nmap ,r :RecurGrepFast 
+nmap ,R :RecurGrep
+nmap ,r :RecurGrepFast
 " mappings to call them with the default word as search text
 nmap ,wR :RecurGrep <cword><CR>
 nmap ,wr :RecurGrepFast <cword><CR>
@@ -300,18 +300,18 @@ endif
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
-" isort for python 
+" isort for python
 let g:vim_isort_map = '<C-i>'
 let g:vim_isort_python_version = 'python2'
 
-" Tagbar ----------------------------- 
+" Tagbar -----------------------------
 
 " toggle tagbar display
 map <F4> :TagbarToggle<CR>
 " autofocus on tagbar open
 let g:tagbar_autofocus = 1
 
-" NERDTree ----------------------------- 
+" NERDTree -----------------------------
 
 " toggle nerdtree display
 map <F3> :NERDTreeToggle<CR>
@@ -387,7 +387,7 @@ let g:ctrlp_custom_ignore = {
 "let g:syntastic_javascript_checkers = ['eslint']
 " don't put icons on the sign column (it hides the vcs status icons of signify)
 " let g:syntastic_enable_signs = 0
-" custom icons (enable them if you use a patched font, and enable the previous 
+" custom icons (enable them if you use a patched font, and enable the previous
 " setting)
 " let g:syntastic_error_symbol = '✗'
 " let g:syntastic_warning_symbol = '⚠'
@@ -419,7 +419,7 @@ set completeopt=longest,menu
 " NeoComplCache ------------------------------
 
 " most of them not documented because I'm not sure how they work
-" (docs aren't good, had to do a lot of trial and error to make 
+" (docs aren't good, had to do a lot of trial and error to make
 " it play nice)
 
 " Disable AutoComplPop.
@@ -498,7 +498,7 @@ highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 " Window Chooser ------------------------------
-" ale config 
+" ale config
 " check
 let g:ale_linters = {
 \   'c++': ['clang'],
@@ -574,7 +574,7 @@ function SetTitle()
     elseif &filetype == 'python'
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
-	    call append(line(".")+1, "") 
+	    call append(line(".")+1, "")
 
 "    elseif &filetype == 'ruby'
 "        call setline(1,"#!/usr/bin/env ruby")
