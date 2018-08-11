@@ -74,8 +74,8 @@ Plugin 'Shougo/neocomplcache.vim'
 " Snippets manager (SnipMate), dependencies, and snippets repo
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
-"Plugin 'honza/vim-snippets'
-"Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " awesome colorscheme
 Plugin 'tomasr/molokai'
 " Git/mercurial/others diff icons on the side of the file lines
@@ -138,6 +138,8 @@ Plugin 'IndexedSearch'
 Plugin 'matchit.zip'
 " Yank history navigation
 Plugin 'YankRing.vim'
+" auto python format
+Plugin 'Chiel92/vim-autoformat'
 
 " ============================================================================
 " Install plugins the first time vim runs
@@ -300,6 +302,13 @@ endif
 " ============================================================================
 " Plugins settings and mappings
 " Edit them as you wish.
+"
+" UltraSnip ------------------------------
+let g:UltiSnipsExpandTrigger="<F7>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+"
 " isort for python
 let g:vim_isort_map = '<C-i>'
 let g:vim_isort_python_version = 'python2'
@@ -503,17 +512,17 @@ highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 let g:ale_linters = {
 \   'c++': ['clang'],
 \   'c': ['clang'],
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8'],
 \}
 " fix
-let b:ale_fixers = ['autopep8', 'yapf']
+" let b:ale_fixers = ['autopep8', 'yapf']
 " do not check when open file
 let g:ale_lint_on_enter = 1
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '§'
+let g:ale_sign_error = '☓'
+let g:ale_sign_warning = '⚡'
 "显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -523,6 +532,12 @@ let mapleader=","
 nmap <Leader>s :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>d :ALEDetail<CR>
+
+" auto-format config
+nnoremap <F6> :Autoformat<CR>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 " ---------------------------------
 " map# ping
