@@ -157,6 +157,7 @@ endif
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on
+set clipboard^=unnamed
 
 " tabs and spaces handling
 set expandtab
