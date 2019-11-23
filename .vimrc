@@ -1,8 +1,8 @@
 scriptencoding utf-8
 " ============================================================================
 " Author: Zuchen Wang
-" Version: v1.1.0
-" Update Time: 2018-09-25
+" Version: v1.2.0
+" Update Time: 2019-11-24
 
 " ============================================================================
 " Vundle initialization
@@ -17,8 +17,8 @@ let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle..."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
+    !mkdir -p ~/.vim/bundle
+    !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
     let iCanHazVundle=0
 endif
 
@@ -38,108 +38,80 @@ Plugin 'gmarik/vundle'
 
 " Better file browser
 Plugin 'scrooloose/nerdtree'
+
 " Code commenter
 Plugin 'scrooloose/nerdcommenter'
+
 " Class/module browser
 Plugin 'majutsushi/tagbar'
+
 " Code and files fuzzy finder
 " Plugin 'kien/ctrlp.vim'
+
 " Extension to ctrlp, for fuzzy command finder
 " Plugin 'fisadev/vim-ctrlp-cmdpalette'
+
 " Zen coding
 " Plugin 'mattn/emmet-vim'
+
 " Maybe the best Git integration
 Plugin 'tpope/vim-fugitive'
+
 " Tab list panel
 "Plugin 'kien/tabman.vim'
+
 " Airline
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
 " Consoles as buffers
 Plugin 'rosenfeld/conque-term'
+
 " Pending tasks list
 " Plugin 'fisadev/FixedTaskList.vim'
+
 " Surround
 Plugin 'tpope/vim-surround'
+
 " Autoclose
 Plugin 'Townk/vim-autoclose'
+
 " Indent text object
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'Yggdroot/indentLine'
-" Python mode (indentation, doc, refactor, lints, code checking, motion and
-" operators, highlighting, run and ipdb breakpoints)
-" Plugin 'python-mode/python-mode'
+
 " Better autocompletion
 Plugin 'Shougo/neocomplcache.vim'
+
 " Snippets manager (SnipMate), dependencies, and snippets repo
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
 " awesome colorscheme
 Plugin 'tomasr/molokai'
+
 " Git/mercurial/others diff icons on the side of the file lines
 Plugin 'mhinz/vim-signify'
-" Automatically sort python imports
-Plugin 'fisadev/vim-isort'
-" Drag visual blocks arround
-" Plugin 'fisadev/dragvisuals.vim'
-" Window chooser
-" Plugin 't9md/vim-choosewin'
-" Python and other languages code checker
-" Plugin 'scrooloose/syntastic'
+
 " 异步语法检查
 Plugin 'w0rp/ale'
+
 " YCM
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " YCM-Generator
-Plugin 'rdnetto/YCM-Generator', {'branch':'stable'}
+" Plugin 'rdnetto/YCM-Generator', {'branch':'stable'}
+
 " jedi-vim
 Plugin 'davidhalter/jedi-vim'
-" Paint css colors with the real color
-" Plugin 'lilydjwg/colorizer'
-" Relative numbering of lines (0 is the current line)
-" (disabled by default because is very intrusive and can't be easily toggled
-" on/off. When the plugin is present, will always activate the relative
-" numbering every time you go to normal mode. Author refuses to add a setting
-" to avoid that)
-" Plugin 'myusuf3/numbers.vim'
 
-" javascript complete after install the plugin, you must cd the install
-" directory and run `npm install`, then add a .tern-project config file
-" the doc at http://ternjs.net/doc/manual.html#vim
-" Plugin 'marijnh/tern_for_vim'
-" Golang Plugins
-" Plugin 'fatih/vim-go'
-" JSX syntax highlight.
-" Plugin 'mxw/vim-jsx'
-" Markdown syntastic highlight
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-" Markdown realtime preview need type :InstantMarkdownPreview in vim editer.
-" Before you want to use it, please run
-" `sudo npm -g install instant-markdown-d`
-Plugin 'suan/vim-instant-markdown'
 " Handlebars syntax highlighting
 Plugin 'mustache/vim-mustache-handlebars'
-" Vue.js syntax and highlighting
-" Plugin 'tao12345666333/vim-vue'
-" True Sublime Text style multiple selections for Vim
-" Plugin 'terryma/vim-multiple-cursors'
-" Modern database interface for Vim
-" Plugin 'tpope/vim-db'
-
-
-" Plugins from vim-scripts repos:
 
 " Search results counter
 Plugin 'IndexedSearch'
-" XML/HTML tags navigation
-Plugin 'matchit.zip'
+
 " Yank history navigation
 Plugin 'YankRing.vim'
-" auto python format
-Plugin 'Chiel92/vim-autoformat'
 
 " ============================================================================
 " Install plugins the first time vim runs
@@ -164,9 +136,6 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-" highlight cursor line and column
-" set cursorline
-" set cursorcolumn
 " hidden startup messages
 set shortmess=atI
 " auto read and write
@@ -190,11 +159,6 @@ set backspace=indent,eol,start
 autocmd BufWritePre * :%s/\s\+$//e
 " 保存时自动删除文件末尾的空格
 autocmd BufWritePre * :%s/^$\n\+\%$//ge
-
-" tab length exceptions on some file types
-" autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " auto open or close NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -221,6 +185,7 @@ set nu
 
 " tab navigation mappings
 map tn :tabn<CR>
+map te: tabedit
 map tp :tabp<CR>
 map tm :tabm
 map tt :tabnew
@@ -246,7 +211,7 @@ imap <C-J> <C-X><C-O>
 " Comment this line to enable autocompletion preview window
 " (displays documentation related to the selected completion option)
 " Disabled by default because preview makes the window flicker
-set completeopt-=preview
+" set completeopt-=preview
 
 " save as sudo
 ca w!! w !sudo tee "%"
@@ -309,18 +274,6 @@ let g:UltiSnipsExpandTrigger="<F7>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
-"
-" isort for python
-let g:vim_isort_map = '<C-i>'
-let g:vim_isort_python_version = 'python2'
-
-" Tagbar -----------------------------
-
-" toggle tagbar display
-map <F4> :TagbarToggle<CR>
-" autofocus on tagbar open
-let g:tagbar_autofocus = 1
-
 " NERDTree -----------------------------
 
 " toggle nerdtree display
@@ -330,14 +283,14 @@ nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
+" Tagbar ———————
 
-" Tasklist ------------------------------
-
-" show pending tasks list
-"map <F2> :TaskList<CR>
+" toggle tagbar display
+map <F4> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 1
 
 " CtrlP ------------------------------
-
 " file finder mapping
 let g:ctrlp_map = ',e'
 " hidden some types files
@@ -374,102 +327,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.pyc$\|\.pyo$',
   \ }
 
-" Syntastic ------------------------------
-
-" show list of errors and warnings on the current file
-" nmap <leader>e :Errors<CR>
-" turn to next or previous errors, after open errors list
-" nmap <leader>n :lnext<CR>
-" nmap <leader>p :lprevious<CR>
-" check also when just opened the file
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_cpp_include_dirs = ['/usr/include/']
-" let g:syntastic_cpp_remove_include_errors = 1
-" let g:syntastic_cpp_check_header = 1
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-" let g:syntastic_quiet_messages = { "type": "style" }
-" syntastic checker for javascript.
-" eslint is the only tool support JSX.
-" If you don't need write JSX, you can use jshint.
-" And eslint is slow, but not a hindrance
-" let g:syntastic_javascript_checkers = ['jshint']
-"let g:syntastic_javascript_checkers = ['eslint']
-" don't put icons on the sign column (it hides the vcs status icons of signify)
-" let g:syntastic_enable_signs = 0
-" custom icons (enable them if you use a patched font, and enable the previous
-" setting)
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" let g:syntastic_style_error_symbol = '✗'
-" let g:syntastic_style_warning_symbol = '⚠'
-
-" Python-mode ------------------------------
-
-" don't use linter, we use syntastic for that
-" let g:pymode_lint_on_write = 0
-" let g:pymode_lint_signs = 0
-" don't fold python code on open
-let g:pymode_folding = 0
-" don't load rope by default. Change to 1 to use rope
-" let g:pymode_rope = 0
-" open definitions on same window, and custom mappings for definitions and
-" occurrences
-" let g:pymode_rope_goto_definition_bind = ',d'
-" let g:pymode_rope_goto_definition_cmd = 'e'
-" nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
-" nmap ,o :RopeFindOccurrences<CR>
-
-" YCM config
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-set completeopt=longest,menu
-
-" NeoComplCache ------------------------------
-
-" most of them not documented because I'm not sure how they work
-" (docs aren't good, had to do a lot of trial and error to make
-" it play nice)
-
-" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplcache.
-"let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_enable_ignore_case = 1
-"" Use smartcase.
-"let g:neocomplcache_enable_smart_case = 1
-"let g:neocomplcache_enable_auto_select = 1
-"
-"let g:neocomplcache_enable_fuzzy_completion = 1
-"let g:neocomplcache_enable_camel_case_completion = 1
-"let g:neocomplcache_enable_underbar_completion = 1
-"let g:neocomplcache_fuzzy_completion_start_length = 1
-"let g:neocomplcache_auto_completion_start_length = 1
-"let g:neocomplcache_manual_completion_start_length = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplcache_min_keyword_length = 1
-"let g:neocomplcache_min_syntax_length = 1
-"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"" complete with workds from any opened file
-"let g:neocomplcache_same_filetype_lists = {}
-"let g:neocomplcache_same_filetype_lists._ = '_'
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" Define keyword.
-"if !exists('g:neocomplcache_keyword_patterns')
-"    let g:neocomplcache_keyword_patterns = {}
-"endif
-"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplcache#undo_completion()
-"inoremap <expr><C-l>     neocomplcache#complete_common_string()
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplcache#close_popup()
-"inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
 " TabMan ------------------------------
 
 " mappings to toggle display, and to focus on it
@@ -480,16 +337,6 @@ let g:tabman_focus  = 'tf'
 
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-
-" DragVisuals ------------------------------
-
-" mappings to move blocks in 4 directions
-vmap <expr> <S-M-LEFT> DVB_Drag('left')
-vmap <expr> <S-M-RIGHT> DVB_Drag('right')
-vmap <expr> <S-M-DOWN> DVB_Drag('down')
-vmap <expr> <S-M-UP> DVB_Drag('up')
-" mapping to duplicate block
-vmap <expr> D DVB_Duplicate()
 
 " Signify ------------------------------
 
@@ -516,7 +363,7 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 " fix
-" let b:ale_fixers = ['autopep8', 'yapf']
+let b:ale_fixers = ['autopep8', 'yapf']
 " do not check when open file
 let g:ale_lint_on_enter = 1
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
@@ -547,10 +394,10 @@ nmap #  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 " Air# line ------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'dark'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme = 'molokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 
@@ -591,35 +438,6 @@ function SetTitle()
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
 	    call append(line(".")+1, "")
-
-"    elseif &filetype == 'ruby'
-"        call setline(1,"#!/usr/bin/env ruby")
-"        call append(line("."),"# encoding: utf-8")
-"	    call append(line(".")+1, "")
     endif
 endfunction
 autocmd BufNewFile * normal G
-
-" Vim-jsx ------------------------------
-
-" if you use JSX syntax in .js file, please enable it.
-" let g:jsx_ext_required = 0
-
-" Vim-markdown ------------------------------
-
-" Disabled automatically folding
-let g:vim_markdown_folding_disabled=1
-" LeTeX math
-let g:vim_markdown_math=1
-" Highlight YAML frontmatter
-let g:vim_markdown_frontmatter=1
-
-" Vim-instant-markdown -----------------
-
-" If it takes your system too much, you can specify
-" let g:instant_markdown_slow = 1
-" if you don't want to manually control it
-" you can open this setting
-" and when you open this, you can manually trigger preview
-" via the command :InstantMarkdownPreview
-let g:instant_markdown_autostart = 0
